@@ -78,6 +78,12 @@ while not game_playing:
 
 while game_playing:
     #Tracking north enemies
+    north_enemy_count =0
+    south_enemy_count =0
+    west_enemy_count = 0
+    east_enemy_count = 0
+    trap_count = 0
+
     for k in range(3):
         if temp_pos[1] == 0:
             break
@@ -202,7 +208,7 @@ while game_playing:
         else:
             print("You have successfully moved North")
             temp_field_val = field[position[0]][position[1]-1]
-            field[position[0]][position[1]] = temp_field_val
+            field[position[0]][position[1]] = 0
             field[position[0]][position[1]-1] = -1
             position = [position[0], position[1] -1]
 
@@ -218,7 +224,7 @@ while game_playing:
         else:
             print("You have successfully moved West")
             temp_field_val = field[position[0]-1][position[1]]
-            field[position[0]][position[1]] = temp_field_val
+            field[position[0]][position[1]] = 0
             field[position[0]-1][position[1]] = -1
             position = [position[0]-1, position[1]]
 
@@ -234,7 +240,7 @@ while game_playing:
         else:
             print("You have successfully moved East")
             temp_field_val = field[position[0]+1][position[1]]
-            field[position[0]][position[1]] = temp_field_val
+            field[position[0]][position[1]] = 0
             field[position[0]+1][position[1]] = -1
             position = [position[0]+1, position[1]]
 
@@ -251,13 +257,17 @@ while game_playing:
             print("You have successfully moved South")
 
             temp_field_val = field[position[0]][position[1]+1]
-            field[position[0]][position[1]] = temp_field_val
+            field[position[0]][position[1]] = 0
             field[position[0]][position[1]+1] = -1
             position = [position[0], position[1] +1]
 
             print(position)
 
+
+
     elif player_intent == "Q":
         game_playing = False
         break
+
+    print(field)
 
