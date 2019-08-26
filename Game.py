@@ -44,7 +44,7 @@ for i in range(field_size):
 
 not_valid_start = []
 start = [random.randint(0,field_size), random.randint(0,field_size)]
-field[start[0]][start[1]] = 0
+field[start[0]][start[1]] = -1
 
 print(field)
 print(start)
@@ -59,10 +59,30 @@ print("At any time type Q to stop playing")
 # If you are one space away from an enemy they can attack you
 # For now (this will be changed later), enemies only take one hit to kill
 
+#Every turn, you can go North, East, South, or West
+
 player_HP = 100
 
+position = start
+temp_pos = position
+trap_count = 0
+north_enemy_count = 0
+south_enemy_count = 0
+west_enemy_count = 0
+east_enemy_count = 0
 
 while game_playing:
+    #Tracking north enemies
+    for k in range(3):
+        if temp_pos[1] == 0:
+            break
+        else:
+            if field[temp_pos[0]][temp_pos[1]] == 10:
+                trap_count ++
+            elif field[temp_pos[0]][temp_pos[1]] == 9:
+                north_enemy_count ++
+            temp_pos[1] = temp_pos[1]- 1
+    
     player_intent = input("Howdy")
     if player_intent == "Q":
         game_playing = False
