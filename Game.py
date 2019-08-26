@@ -56,6 +56,11 @@ print("At any time type Q to stop playing")
 # For start, enemies are stationary. You are allowed to see 3 spaces in front of you in all 4 cardinal directions
 # Once you kill an enemy their space on the board becomes harmless.
 # Traps instantly end the game if you stand on one. You cannot see traps, however a message will pop up saying you have x amount of traps around you that you can detect within the 3 spaces
+# If you are one space away from an enemy they can attack you
+# For now (this will be changed later), enemies only take one hit to kill
+
+player_HP = 100
+
 
 while game_playing:
     player_intent = input("Howdy")
