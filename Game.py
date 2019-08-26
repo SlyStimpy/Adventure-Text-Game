@@ -78,9 +78,9 @@ while game_playing:
             break
         else:
             if field[temp_pos[0]][temp_pos[1]] == 10:
-                trap_count ++
+                trap_count +=1
             elif field[temp_pos[0]][temp_pos[1]] == 9:
-                north_enemy_count ++
+                north_enemy_count +=1
             temp_pos[1] = temp_pos[1]- 1
     
     player_intent = input("Howdy")
