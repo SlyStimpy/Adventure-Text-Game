@@ -43,7 +43,7 @@ for i in range(field_size):
         #Numbers 0-7 mean nothing appear. 8 is a healing space. 9 is an enemy. 10 is a trap
 
 not_valid_start = []
-start = [random.randint(0,field_size), random.randint(0,field_size)]
+start = [random.randint(0,field_size-1), random.randint(0,field_size-1)]
 field[start[0]][start[1]] = -1
 
 print(field)
@@ -137,7 +137,7 @@ while game_playing:
 
     player_intent = input("Which direction do you attack? North, South, East, West? Any other answer makes it random.")
 
-    if player_intent != "North" or player_intent != "West" or player_intent != "East" or player_intent != "South" or player_intent != "Q":
+    if player_intent != "North" and player_intent != "West" and player_intent != "East" and player_intent != "South" and player_intent != "Q":
         num = random.randint(1,5)
         if num == 1:
             player_intent = "North"
@@ -163,6 +163,7 @@ while game_playing:
             print("Nothing happened attacking South")
         else:
             field[position[0]][position[1]+1] = 0
+            print(field[position[0]][position[1]+1])
             print("You attacked South! You hit an enemy!")
     elif player_intent == "East":
         if position[0] == field_size-1:
@@ -187,26 +188,76 @@ while game_playing:
 
 
 
-    player_intent = input("Where do you wish to move to? North, South, East, or West? Any other option will be random.")
+    player_intent = input("Where do you wish to move to? North, South, East, or West? Q to quit. Any other option will keep you in the same place.")
 
-    if player_intent != "North" or player_intent != "West" or player_intent != "East" or player_intent != "South" or player_intent != "Q":
-        num = random.randint(1,5)
-        if num == 1:
-            player_intent = "North"
-        elif num == 2:
-            player_intent = "West"
-        elif num == 3:
-            player_intent = "South"
-        elif num == 4:
-            player_intent = "East"
+    if player_intent == "North":
+        if position[1] == 0:
+            print("You have failed to move North as it is the edge of the map.")
+        elif field[position[0]][position[1] - 1] == 10:
+            print("You have hit a trap moving north. You have instantly died and your game is over!")
+            game_playing =False
+            break
+        elif field[position[0]][position[1] - 1] == 9:
+            print("There is an enemy there. You have failed to move North")
+        else:
+            print("You have successfully moved North")
+            temp_field_val = field[position[0]][position[1]-1]
+            field[position[0]][position[1]] = temp_field_val
+            field[position[0]][position[1]-1] = -1
+            position = [position[0], position[1] -1]
 
-    if player_intent == "Q":
+    elif player_intent == "West":
+        if position[0] == 0:
+            print("You have failed to move West as it is the edge of the map.")
+        elif field[position[0]-1][position[1]] == 10:
+            print("You have hit a trap moving West. You have instantly died and your game is over!")
+            game_playing =False
+            break
+        elif field[position[0]-1][position[1]] == 9:
+            print("There is an enemy there. You have failed to move West")
+        else:
+            print("You have successfully moved West")
+            temp_field_val = field[position[0]-1][position[1]]
+            field[position[0]][position[1]] = temp_field_val
+            field[position[0]-1][position[1]] = -1
+            position = [position[0]-1, position[1]]
+
+    elif player_intent == "East":
+        if position[0] == field_size-1:
+            print("You have failed to move East as it is the edge of the map.")
+        elif field[position[0]+1][position[1]] == 10:
+            print("You have hit a trap moving East. You have instantly died and your game is over!")
+            game_playing =False
+            break
+        elif field[position[0]+1][position[1]] == 9:
+            print("There is an enemy there. You have failed to move East")
+        else:
+            print("You have successfully moved East")
+            temp_field_val = field[position[0]+1][position[1]]
+            field[position[0]][position[1]] = temp_field_val
+            field[position[0]+1][position[1]] = -1
+            position = [position[0]+1, position[1]]
+
+    if player_intent == "South":
+        if position[1] == field_size-1:
+            print("You have failed to move South as it is the edge of the map.")
+        elif field[position[0]][position[1] + 1] == 10:
+            print("You have hit a trap moving South. You have instantly died and your game is over!")
+            game_playing =False
+            break
+        elif field[position[0]][position[1] + 1] == 9:
+            print("There is an enemy there. You have failed to move South")
+        else:
+            print("You have successfully moved South")
+
+            temp_field_val = field[position[0]][position[1]+1]
+            field[position[0]][position[1]] = temp_field_val
+            field[position[0]][position[1]+1] = -1
+            position = [position[0], position[1] +1]
+
+            print(position)
+
+    elif player_intent == "Q":
         game_playing = False
         break
 
-
-while game_playing:
-    player_intent = input("Howdy")
-    if player_intent == "Q":
-        game_playing = False
-        break
