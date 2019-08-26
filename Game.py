@@ -39,8 +39,8 @@ field = []
 for i in range(field_size):
     field.append([])
     for j in range(field_size):
-        field[i].append(random.randint(0,10))
-        #Numbers 0-7 mean nothing appear. 8 is a healing space. 9 is an enemy
+        field[i].append(random.randint(0,11))
+        #Numbers 0-7 mean nothing appear. 8 is a healing space. 9 is an enemy. 10 is a trap
 
 not_valid_start = []
 start = [random.randint(0,field_size), random.randint(0,field_size)]
@@ -51,6 +51,11 @@ print(start)
 game_playing = True
 
 print("At any time type Q to stop playing")
+
+# Gameplay:
+# For start, enemies are stationary. You are allowed to see 3 spaces in front of you in all 4 cardinal directions
+# Once you kill an enemy their space on the board becomes harmless.
+# Traps instantly end the game if you stand on one. You cannot see traps, however a message will pop up saying you have x amount of traps around you that you can detect within the 3 spaces
 
 while game_playing:
     player_intent = input("Howdy")
