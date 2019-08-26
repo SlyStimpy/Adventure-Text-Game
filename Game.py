@@ -48,7 +48,7 @@ field[start[0]][start[1]] = -1
 
 print(field)
 print(start)
-game_playing = True
+game_playing = False
 
 print("At any time type Q to stop playing")
 
@@ -71,6 +71,11 @@ south_enemy_count = 0
 west_enemy_count = 0
 east_enemy_count = 0
 
+while not game_playing:
+    p_input = input("Type any phrase to start!")
+    if p_input != "":
+        game_playing = True
+
 while game_playing:
     #Tracking north enemies
     for k in range(3):
@@ -82,9 +87,9 @@ while game_playing:
             elif field[temp_pos[0]][temp_pos[1]] == 9:
                 north_enemy_count +=1
             temp_pos[1] = temp_pos[1]- 1
-    
+
     temp_pos = position
-            
+
     for l in range(3):
         if temp_pos[1] == field_size -1:
             break
@@ -94,9 +99,9 @@ while game_playing:
             elif field[temp_pos[0]][temp_pos[1]] == 9:
                 south_enemy_count +=1
             temp_pos[1] = temp_pos[1]+ 1
-    
+
     temp_pos = position
-    
+
     for m in range(3):
         if temp_pos[0] == field_size -1:
             break
@@ -106,9 +111,9 @@ while game_playing:
             elif field[temp_pos[0]][temp_pos[1]] == 9:
                 east_enemy_count +=1
             temp_pos[0] = temp_pos[0]+ 1
-    
+
     temp_pos = position
-    
+
     for n in range(3):
         if temp_pos[0] == 0:
             break
@@ -118,18 +123,25 @@ while game_playing:
             elif field[temp_pos[0]][temp_pos[1]] == 9:
                 west_enemy_count +=1
             temp_pos[0] = temp_pos[0]- 1
-    
+
     temp_pos = position
-    
+
     print("You can look 3 steps ahead in each direction, here's what is found:")
     print("")
-    print("Enemies north: " + north_enemy_count)
-    print("Enemies west: " + west_enemy_count)
-    print("Enemies east: " + east_enemy_count)
-    print("Enemies south: " + south_enemy_count)
+    print("Enemies north: " + str(north_enemy_count))
+    print("Enemies west: " + str(west_enemy_count))
+    print("Enemies east: " + str(east_enemy_count))
+    print("Enemies south: " + str(south_enemy_count))
     print("")
-    print("Total traps: " +trap_count)
-    
+    print("Total traps: " +str(trap_count))
+
+    player_intent = input("Howdy")
+    if player_intent == "Q":
+        game_playing = False
+        break
+
+
+while game_playing:
     player_intent = input("Howdy")
     if player_intent == "Q":
         game_playing = False
