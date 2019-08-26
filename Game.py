@@ -83,6 +83,44 @@ while game_playing:
                 north_enemy_count +=1
             temp_pos[1] = temp_pos[1]- 1
     
+    temp_pos = position
+            
+    for l in range(3):
+        if temp_pos[1] == field_size -1:
+            break
+        else:
+            if field[temp_pos[0]][temp_pos[1]] == 10:
+                trap_count +=1
+            elif field[temp_pos[0]][temp_pos[1]] == 9:
+                south_enemy_count +=1
+            temp_pos[1] = temp_pos[1]+ 1
+    
+    temp_pos = position
+    
+    for m in range(3):
+        if temp_pos[0] == field_size -1:
+            break
+        else:
+            if field[temp_pos[0]][temp_pos[1]] == 10:
+                trap_count +=1
+            elif field[temp_pos[0]][temp_pos[1]] == 9:
+                east_enemy_count +=1
+            temp_pos[0] = temp_pos[0]+ 1
+    
+    temp_pos = position
+    
+    for n in range(3):
+        if temp_pos[0] == 0:
+            break
+        else:
+            if field[temp_pos[0]][temp_pos[1]] == 10:
+                trap_count +=1
+            elif field[temp_pos[0]][temp_pos[1]] == 9:
+                east_enemy_count +=1
+            temp_pos[0] = temp_pos[0]- 1
+    
+    temp_pos = position
+    
     player_intent = input("Howdy")
     if player_intent == "Q":
         game_playing = False
