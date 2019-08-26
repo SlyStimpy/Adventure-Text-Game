@@ -116,10 +116,19 @@ while game_playing:
             if field[temp_pos[0]][temp_pos[1]] == 10:
                 trap_count +=1
             elif field[temp_pos[0]][temp_pos[1]] == 9:
-                east_enemy_count +=1
+                west_enemy_count +=1
             temp_pos[0] = temp_pos[0]- 1
     
     temp_pos = position
+    
+    print("You can look 3 steps ahead in each direction, here's what is found:")
+    print("")
+    print("Enemies north: " + north_enemy_count)
+    print("Enemies west: " + west_enemy_count)
+    print("Enemies east: " + east_enemy_count)
+    print("Enemies south: " + south_enemy_count)
+    print("")
+    print("Total traps: " +trap_count)
     
     player_intent = input("Howdy")
     if player_intent == "Q":
