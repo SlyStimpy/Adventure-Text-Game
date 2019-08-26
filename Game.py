@@ -135,7 +135,71 @@ while game_playing:
     print("")
     print("Total traps: " +str(trap_count))
 
-    player_intent = input("Howdy")
+    player_intent = input("Which direction do you attack? North, South, East, West? Any other answer makes it random.")
+
+    if player_intent != "North" or player_intent != "West" or player_intent != "East" or player_intent != "South" or player_intent != "Q":
+        num = random.randint(1,5)
+        if num == 1:
+            player_intent = "North"
+        elif num == 2:
+            player_intent = "West"
+        elif num == 3:
+            player_intent = "South"
+        elif num == 4:
+            player_intent = "East"
+
+    if player_intent == "North":
+        if position[1] == 0:
+            print("You cannot attack North you are at the edge of the map")
+        elif field[position[0]][position[1]-1] != 9:
+            print("Nothing happened attacking North")
+        else:
+            field[position[0]][position[1]-1] = 0
+            print("You attacked North! You hit an enemy!")
+    elif player_intent == "South":
+        if position[1] == field_size-1:
+            print("You cannot attack South you are at the edge of the map")
+        elif field[position[0]][position[1]+1] != 9:
+            print("Nothing happened attacking South")
+        else:
+            field[position[0]][position[1]+1] = 0
+            print("You attacked South! You hit an enemy!")
+    elif player_intent == "East":
+        if position[0] == field_size-1:
+            print("You cannot attack East you are at the edge of the map")
+        elif field[position[0]+1][position[1]] != 9:
+            print("Nothing happened attacking East")
+        else:
+            field[position[0]+1][position[1]] = 0
+            print("You attacked East! You hit an enemy!")
+    elif player_intent == "West":
+        if position[0] == 0:
+            print("You cannot attack West you are at the edge of the map")
+        elif field[position[0] - 1][position[1]] != 9:
+            print("Nothing happened attacking West")
+        else:
+            field[position[0] - 1][position[1]] = 0
+            print("You attacked West! You hit an enemy!")
+
+    elif player_intent == "Q":
+        game_playing = False
+        break
+
+
+
+    player_intent = input("Where do you wish to move to? North, South, East, or West? Any other option will be random.")
+
+    if player_intent != "North" or player_intent != "West" or player_intent != "East" or player_intent != "South" or player_intent != "Q":
+        num = random.randint(1,5)
+        if num == 1:
+            player_intent = "North"
+        elif num == 2:
+            player_intent = "West"
+        elif num == 3:
+            player_intent = "South"
+        elif num == 4:
+            player_intent = "East"
+
     if player_intent == "Q":
         game_playing = False
         break
